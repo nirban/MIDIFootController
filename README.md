@@ -44,7 +44,9 @@ MIDIFootController/
 ├── README.md
 ├── Images/
 │   ├── Box.jpeg                  # finished enclosure
-│   └── ProtoBoard.jpeg           # perfboard wiring
+│   ├── ProtoBoard.jpeg           # perfboard wiring
+│   ├── Schematic.svg             # controller wiring schematic
+│   └── SystemDiagram.svg         # wired + wireless signal flow
 ├── ESP32_S3_MIDI/
 │   ├── ESP_MIDI.ino              # main foot controller firmware
 │   └── ESP32_MIDI_RX.ino         # ESP-NOW -> USB-MIDI receiver firmware
@@ -78,6 +80,13 @@ MIDIFootController/
 | Qty | Part |
 | ---: | --- |
 | 1 | Second ESP32-S3 board with native USB OTG and an onboard WS2812 LED on GPIO 48 |
+
+## Schematic
+
+[![Wiring schematic](Images/Schematic.svg)](Images/Schematic.svg)
+
+The receiver board needs **no external wiring at all** — it uses its onboard WS2812 LED on
+GPIO 48 for status, and only the two USB-C ports. Flash it and plug it in.
 
 ## Pinout
 
@@ -319,6 +328,8 @@ Routes, if you want to script it:
 ---
 
 # Wireless mode: ESP-NOW
+
+[![Signal flow, wired and wireless](Images/SystemDiagram.svg)](Images/SystemDiagram.svg)
 
 Hold **FS3 + FS8** and the controller starts broadcasting every MIDI event over ESP-NOW on
 Wi-Fi channel 6, *in addition* to the USB-MIDI output. A second ESP32-S3 running
